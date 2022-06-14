@@ -14,4 +14,4 @@ Dies sind einfache Schätzungen um zu verhindern das unzureichende Hardware genu
 - Freier Speicherplatz: 2GB
 
 ## Installation
-Einen installations Guide mit Empfehlungen finden sie [hier][/documentation/bktroedel-install-guide.md]
+Einen installations Guide mit Empfehlungen finden sie [hier](/documentation/bktroedel-install-guide.md)
