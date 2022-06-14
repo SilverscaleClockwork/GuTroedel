@@ -20,6 +20,9 @@ if(isset($_SERVER["HTTPS"]) && $debug == false){
 $product_id = isset($_GET['pid']) ? $_GET['pid'] : null;
 $page = isset($_GET['p']) ? $_GET['p'] : null;
 
+$GLOBALS['errno'] = isset($_GET['errno']) ? $_GET['errno'] : null;
+$GLOBALS['errmsg'] = isset($_GET['errmsg']) ? $_GET['errmsg'] : null;
+    
 /**
  * Post variablen
  */
@@ -38,6 +41,12 @@ $nutzer_id = isset($_SESSION['nutzerid']) ? $_SESSION['nutzerid'] : null;
  */
 $template = new PageLoader($template_folder, "error.php");
 
+// if errmsg already exists, show error page and exit
+if(!empty($GLOBALS['errmsg'])){
+    $template->incPHP();
+    exit();
+}
+
 // TODO: Get Userdata if exists (for login and userinfo page).
 
 if(isset($_POST['login']) && $_POST['login'] == 1){
@@ -49,8 +58,9 @@ if(isset($_POST['login']) && $_POST['login'] == 1){
 
 if(isset($_POST['register']) && $_POST['register'] == 1){
     // TODO: register
+    // TODO: check if user already exists and if it does give out an error.
     $salt = gen_salt();
-    $gen_hash($password, $salt);
+    gen_hash($password, $salt);
     // TODO: create user and nutzer entry in database
 }
 
