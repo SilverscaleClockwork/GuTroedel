@@ -1,4 +1,4 @@
-# BKTroedel
+# GuTroedel
     Einfacher Troedeln geht ja nicht mehr.
 Ziel des Projektes ist es die verschwendung von Schulmitteln zu verhindern.
 Dies ist eine Webapp die den Austausch von Schulmaterial vereinfachen soll.
