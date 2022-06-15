@@ -37,6 +37,18 @@ $email = isset($_POST['email']) ? $_POST['email'] : null;
  */
 $nutzer_id = isset($_SESSION['nutzerid']) ? $_SESSION['nutzerid'] : null;
 
+
+/**
+ * Initialise login manager
+ */
+
+$loginmgr = new LoginManager(
+    new File($sql_folder . '/create_user_script.sql'),
+    new File($sql_folder . '/create_nutzer_script.sql'),
+    null, // check password
+    new File($sql_folder . '/check_nutzer_script.sql')
+);
+
 /*
  * Initialisiere Template engine.
  */
@@ -55,16 +67,14 @@ $db = new mysqli($mysql_hostname, $mysql_user, $mysql_hostname, $mysql_password)
 if(isset($_POST['login']) && $_POST['login'] == 1){
     // TODO: login
     // TODO: get user from email and get salt
-    $salt = "test";
-    gen_hash($password, $salt);
 }
 
 if(isset($_POST['register']) && $_POST['register'] == 1){
     // TODO: register
     // TODO: check if user already exists and if it does give out an error.
-    $salt = gen_salt();
-    gen_hash($password, $salt);
-    // TODO: create user and nutzer entry in database
+    
+    
+    // TODO: create nutzer entry in database
 }
 
 /**
