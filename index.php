@@ -45,7 +45,7 @@ $nutzer_id = isset($_SESSION['nutzerid']) ? $_SESSION['nutzerid'] : null;
 $loginmgr = new LoginManager(
     new File($sql_folder . '/create_user_script.sql'),
     new File($sql_folder . '/create_nutzer_script.sql'),
-    null, // check password
+    new File($sql_folder . '/check_user_script.sql'),
     new File($sql_folder . '/check_nutzer_script.sql')
 );
 
@@ -61,6 +61,7 @@ if(!empty($GLOBALS['errmsg'])){
 }
 
 $db = new mysqli($mysql_hostname, $mysql_user, $mysql_hostname, $mysql_password);
+$GLOBALS['db'] = $db;
 
 // TODO: Get Userdata if exists (for login and userinfo page).
 
