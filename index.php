@@ -11,6 +11,7 @@ $GLOBALS["title"] = "GuTrödle";
 
 if(isset($_SERVER["HTTPS"]) && $debug == false){
     echo "Sie sollten HTTPS nutzen";
+    // TODO: move url to https with Location header.
     exit();
 }
 
@@ -46,6 +47,8 @@ if(!empty($GLOBALS['errmsg'])){
     $template->incPHP();
     exit();
 }
+
+$db = new mysqli($mysql_hostname, $mysql_user, $mysql_hostname, $mysql_password);
 
 // TODO: Get Userdata if exists (for login and userinfo page).
 
