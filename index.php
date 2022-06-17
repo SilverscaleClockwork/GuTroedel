@@ -31,7 +31,7 @@ $password = isset($_POST['password']) ? $_POST['password'] : null;
 $vorname = isset($_POST['vorname']) ? $_POST['vorname'] : null;
 $nachname = isset($_POST['nachname']) ? $_POST['nachname'] : null;
 $email = isset($_POST['email']) ? $_POST['email'] : null;
-
+$telephone = isset($_POST['telephone']) ? $_POST['telephone'] : null;
 /**
  * Informationen der Session.
  */
@@ -46,7 +46,8 @@ $loginmgr = new LoginManager(
     new File($sql_folder . '/create_user_script.sql'),
     new File($sql_folder . '/create_nutzer_script.sql'),
     new File($sql_folder . '/check_user_script.sql'),
-    new File($sql_folder . '/check_nutzer_script.sql')
+    new File($sql_folder . '/check_nutzer_script.sql'),
+    new File($sql_folder . '/get_user_by_id.sql')
 );
 
 /*
@@ -63,19 +64,14 @@ if(!empty($GLOBALS['errmsg'])){
 $db = new mysqli($mysql_hostname, $mysql_user, $mysql_hostname, $mysql_password);
 $GLOBALS['db'] = $db;
 
-// TODO: Get Userdata if exists (for login and userinfo page).
-
+// try to login
 if(isset($_POST['login']) && $_POST['login'] == 1){
-    // TODO: login
-    // TODO: get user from email and get salt
+    $loginmgr->login($db, $email, $password);
 }
 
+// try to register
 if(isset($_POST['register']) && $_POST['register'] == 1){
-    // TODO: register
-    // TODO: check if user already exists and if it does give out an error.
-    
-    
-    // TODO: create nutzer entry in database
+    $loginmgr->register($db, $email, $password, $vorname, $nachname, $telephone);
 }
 
 /**
