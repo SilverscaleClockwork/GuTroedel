@@ -48,7 +48,6 @@ require_once('MySQLFunctions.php');
     }
 
     public function login(mysqli $db, string $email, string $password){
-        // TODO: get password 
         $stmt = $db->prepare($this->check_user_script->getText());
         // stop if error
         if(!$stmt)
@@ -64,10 +63,12 @@ require_once('MySQLFunctions.php');
         $stmt->bind_param("i", $this->userid);
         $stmt->execute();
         $result = $stmt->get_result();
+
         [$oldhash, $salt] = $result->fetch_all(MYSQLI_NUM)[0];
+        // generiere hash zum prüfen
         $hash = gen_hash($password, $salt);
         
-        // did login fail?
+        // prüfe login
         if($hash != $oldhash){
             $this->userid = null;
             return false;

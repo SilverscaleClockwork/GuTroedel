@@ -25,9 +25,11 @@ class PageLoader extends File{
         $success = true;
         $this->filepath = $this->folder_path . "/$page_name";
         
+        // falls roher dateiname nicht existiert versuche es mit dateiendung '.php'
         if(file_exists($this->filepath) == false){        
             $this->filepath = $this->filepath . ".php";
-            
+
+            // falls keine datei gefunden  wird zeige error. 
             if(file_exists($this->filepath) == false){
                 $this->filepath = $this->folder_path . "/" . $this->default_page;
                 $success = false;

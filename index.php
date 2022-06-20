@@ -33,6 +33,7 @@ $vorname = isset($_POST['vorname']) ? $_POST['vorname'] : null;
 $nachname = isset($_POST['nachname']) ? $_POST['nachname'] : null;
 $email = isset($_POST['email']) ? $_POST['email'] : null;
 $telephone = isset($_POST['telephone']) ? $_POST['telephone'] : null;
+
 /**
  * Informationen der Session.
  */
