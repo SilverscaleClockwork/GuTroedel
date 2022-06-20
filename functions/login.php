@@ -18,7 +18,7 @@ require_once('MySQLFunctions.php');
   * Generiert einen Salt als Nonce.
   */
   function gen_salt(){
-      return random_bytes(16);
+      return base64_encode(random_bytes(12));
   }
 
   /**
@@ -62,8 +62,9 @@ require_once('MySQLFunctions.php');
 
         $stmt = $db->prepare($this->get_password_by_id->getText());
         $stmt->bind_param("i", $this->userid);
+        $stmt->execute();
         $result = $stmt->get_result();
-        [$oldhash, $salt] = $result->fetch_all(MYSQLI_NUM);
+        [$oldhash, $salt] = $result->fetch_all(MYSQLI_NUM)[0];
         $hash = gen_hash($password, $salt);
         
         // did login fail?
@@ -75,10 +76,11 @@ require_once('MySQLFunctions.php');
         return $this->userid;
     }
 
-    public function register(mysqli $db, string $email, string $password, string $forename, string $lastname, string $telefon){
+    public function register(mysqli $db, string $email, string $password, string $forename, string $lastname){
         // generate hash and salt.
         $salt = gen_salt();
         $hash = gen_hash($password, $salt);
+        $super_user = 0;
 
         // save password.
         $stmt = $db->prepare($this->create_password_script->getText());
@@ -86,19 +88,21 @@ require_once('MySQLFunctions.php');
         if(!$stmt)
             return false;
 
-        $stmt->bind_param("ssi", $hash, $salt, 0);
+        $stmt->bind_param("ssi", $salt, $hash, $super_user);
         $stmt->execute();
 
         // check if password exists
         $stmt = $db->prepare($this->check_password_script->getText());
         if(!$stmt)
             return false;
-        $stmt->bind_param("ss", $this->hash, $this->salt);
+        $stmt->bind_param("ss", $hash, $salt);
         $stmt->execute();
 
         // get userid
         $result = $stmt->get_result();
-        $this->userid = $result->fetch_column();
+
+        $result = $result->fetch_all(MYSQLI_NUM);
+        $this->userid = $result[count($result) - 1][0];
 
         // save user
         $stmt = $db->prepare($this->create_user_script->getText());

@@ -6,7 +6,7 @@
 
     $mysql_hostname = "localhost";
     $mysql_user = "root";
-    $mysql_password = "lulwut";
+    $mysql_password = "hifi";
     $mysql_database = "GuTroedel";
 
     $debug = true;

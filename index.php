@@ -20,6 +20,7 @@ if(isset($_SERVER["HTTPS"]) && $debug == false){
  */
 $product_id = isset($_GET['pid']) ? $_GET['pid'] : null;
 $page = isset($_GET['p']) ? $_GET['p'] : null;
+$redirect = isset($_GET['redirect']) ? $_GET['http_redirect'] : null;
 
 $GLOBALS['errno'] = isset($_GET['errno']) ? $_GET['errno'] : null;
 $GLOBALS['errmsg'] = isset($_GET['errmsg']) ? $_GET['errmsg'] : null;
@@ -61,17 +62,27 @@ if(!empty($GLOBALS['errmsg'])){
     exit();
 }
 
-$db = new mysqli($mysql_hostname, $mysql_user, $mysql_hostname, $mysql_password);
+$db = new mysqli($mysql_hostname, $mysql_user, $mysql_password, $mysql_database);
 $GLOBALS['db'] = $db;
 
 // try to login
 if(isset($_POST['login']) && $_POST['login'] == 1){
-    $loginmgr->login($db, $email, $password);
+    // login and save userid
+    $userid = $loginmgr->login($db, $email, $password);
+    // if userid is not null or false put it in $_SESSION['nutzerid']
+    if($userid){
+        $_SESSION['nutzerid'] = $userid;
+    }
 }
 
 // try to register
 if(isset($_POST['register']) && $_POST['register'] == 1){
-    $loginmgr->register($db, $email, $password, $vorname, $nachname, $telephone);
+    // register and save userid
+    $userid = $loginmgr->register($db, $email, $password, $vorname, $nachname);
+    // if userid is not null or false put it in $_SESSION['nutzerid']
+    if($userid){
+        $_SESSION['nutzerid'] = $userid;
+    }
 }
 
 /**
@@ -79,7 +90,12 @@ if(isset($_POST['register']) && $_POST['register'] == 1){
  */
 if($page == "logout"){
     session_unset();
-    header("Location: " . $_SERVER['PHP_SELF'] . "?p=" . $default_page);
+    if($redirect){
+        header("Location: " . $_SERVER['PHP_SELF'] . '?p=' . $redirect);
+    }
+    else{
+        header("Location: " . $_SERVER['PHP_SELF'] . "?p=" . $default_page);
+    }
     exit();
 }
 
@@ -99,7 +115,7 @@ $GLOBALS["nav"] = $nav->getText();
  */
 if($template->setPage($page) == false){
     $GLOBALS["errno"] = 404;
-    $GLOBALS["errmsg"] = "Couldn't find Webpage, probably the page is work in progress or got deleted.";
+    $GLOBALS["errmsg"] = "Couldn't find Webpage, either the page is work in progress or got deleted.";
 }
 
 /**
@@ -108,5 +124,7 @@ if($template->setPage($page) == false){
 if($template->exists()){
     $template->incPHP();
 }
-
+else{
+    echo $GLOBALS['errno'] . ' - ' . $GLOBALS['errmsg'];
+}
 //echo $_SERVER["PHP_SELF"];

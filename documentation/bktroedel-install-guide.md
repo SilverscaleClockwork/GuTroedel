@@ -44,3 +44,20 @@ mysql --user root --password < initialise.sql
 7. BKTroedle sollte nun einsatzfähig sein, dies zu Prüfen registrieren sie sich als erstnutzer (super user).
 
 [1]: /ReadMe.md "Back to ReadMe file"
+
+8. Kopieren sie folgenden text in 'configuration.php' und passen sie diese an.
+```php
+<?php
+    $template_folder = "templates/";
+    $sql_folder = "sqlscripts/";
+    $function_folder = "functions/";
+    $default_page = "login-page";
+
+    $mysql_hostname = "localhost";
+    $mysql_user = "root";
+    $mysql_password = "hifi";
+    $mysql_database = "GuTroedel";
+
+    $debug = false;
+
+```
