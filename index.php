@@ -20,7 +20,7 @@ if(isset($_SERVER["HTTPS"]) && $debug == false){
  */
 $product_id = isset($_GET['pid']) ? $_GET['pid'] : null;
 $page = isset($_GET['p']) ? $_GET['p'] : null;
-$redirect = isset($_GET['redirect']) ? $_GET['http_redirect'] : null;
+$redirect = isset($_GET['redirect']) ? $_GET['redirect'] : null;
 
 $GLOBALS['errno'] = isset($_GET['errno']) ? $_GET['errno'] : null;
 $GLOBALS['errmsg'] = isset($_GET['errmsg']) ? $_GET['errmsg'] : null;
@@ -108,8 +108,7 @@ if($page == null){
 /**
  * Lade Navigationsleiste
  */
-$nav = new File("$template_folder/navigation.html");
-$GLOBALS["nav"] = $nav->getText();
+$nav = (new File("$template_folder/navigation.html"))->getText();
 
 /**
  * Setze Page Template
@@ -123,7 +122,8 @@ if($template->setPage($page) == false){
  * Wenn template datei existiert füge template ein.
  */
 if($template->exists()){
-    $template->incPHP();
+    //$template->incPHP();
+    eval('?>' . $template->getText()  . '<?php');
 }
 else{
     echo $GLOBALS['errno'] . ' - ' . $GLOBALS['errmsg'];

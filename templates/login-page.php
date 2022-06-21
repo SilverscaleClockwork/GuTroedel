@@ -6,7 +6,7 @@
     <title><?= $GLOBALS["title"] ?></title>
 </head>
 <body>
-    <?= $GLOBALS["nav"] ?>
+    <?= $nav ?>
     <main>
         <h1>Loggen sie sich ein.</h1>
         <form action="" method="post">
