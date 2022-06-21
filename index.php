@@ -109,6 +109,7 @@ if($page == null){
  * Lade Navigationsleiste
  */
 $nav = (new File("$template_folder/navigation.html"))->getText();
+$GLOBALS['nav'] = $nav;
 
 /**
  * Setze Page Template
