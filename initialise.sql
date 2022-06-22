@@ -59,7 +59,7 @@ TODO: tbl_bilder ans laufen kriegen.
 CREATE TABLE tbl_bilder
 (
 	pk_id_bild int AUTO_INCREMENT PRIMARY KEY NOT NULL,
-	ware_bild BLOB NOT NULL,
+	ware_bild varbinary(3000000) NOT NULL,
 	fk_id_ware int NOT NULL,
 	FOREIGN KEY(fk_id_ware)
 		REFERENCES tbl_ware(pk_id_ware)
