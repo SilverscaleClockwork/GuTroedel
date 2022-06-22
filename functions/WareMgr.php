@@ -1,6 +1,6 @@
 <?php 
 
-class  WareManager {
+class  WarenManager {
     private $create_ware_script;
     private $delete_ware_script;
 
