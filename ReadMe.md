@@ -15,3 +15,6 @@ Dies sind einfache Schätzungen um zu verhindern das unzureichende Hardware genu
 
 ## Installation
 Einen installations Guide mit Empfehlungen finden sie [hier](/documentation/bktroedel-install-guide.md)
+
+## Git Guide
+Einen Git guide finden sie hier [hier](/documentation/how-to-use-git-in-school.md)
