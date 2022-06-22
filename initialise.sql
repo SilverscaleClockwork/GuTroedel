@@ -38,11 +38,6 @@ CREATE TABLE tbl_zustand
 )
 ENGINE = InnoDB;
 
---CREATE TABLE tbl_bilder
---(
-	--pk_ware_bild BLOB PRIMARY KEY NOT NULL
---)
---ENGINE = InnoDB;
 
 CREATE TABLE tbl_ware
 (
@@ -57,7 +52,22 @@ CREATE TABLE tbl_ware
 			ON DELETE RESTRICT
 )
 ENGINE = InnoDB;
---ware_bild wird erstmal ignoriert
+
+/*
+TODO: tbl_bilder ans laufen kriegen.
+
+CREATE TABLE tbl_bilder
+(
+	pk_id_bild int AUTO_INCREMENT PRIMARY KEY NOT NULL,
+	ware_bild BLOB NOT NULL,
+	fk_id_ware int NOT NULL,
+	FOREIGN KEY(fk_id_ware)
+		REFERENCES tbl_ware(pk_id_ware)
+			ON UPDATE NO ACTION
+			ON DELETE RESTRICT
+)
+ENGINE = InnoDB;
+*/
 
 -- Zwischentabelle um M zu N beziehung von tbl_ware und tbl_tag aufzulösen.
 CREATE TABLE ztbl_ware_tag
