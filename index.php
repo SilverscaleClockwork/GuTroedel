@@ -9,7 +9,7 @@ require_once("$function_folder/PageLoader.php");
 require_once("$function_folder/login.php");
 $GLOBALS["title"] = "GuTrödle";
 
-if(isset($_SERVER["HTTPS"]) && $debug == false){
+if(isset($_SERVER["HTTPS"]) == false && $debug == false){
     echo "Sie sollten HTTPS nutzen";
     // TODO: move url to https with Location header.
     exit();
