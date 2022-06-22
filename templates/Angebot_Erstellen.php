@@ -26,8 +26,8 @@
 
         <form action="" method="post">
             <!--TODO Bild input-->
-            <input type="text" class="titel" name="titel_ware" placeholder="Titel"><br><br>
-            <label for="kategorie">Kategorien hinzufügen:</label>
+            <input type="text" class="titel" name="titel_ware" placeholder="Titel"><br><br>     <!--Name der Ware-->
+            <label for="kategorie">Kategorien hinzufügen:</label>   <!--TODO: Zu einer  "Klapp-Tabelle" machen-->
             <ul>
                 <li><input type="checkbox" class="kategorie" id="k_buch" name="kategorie_checkbox"> <label for="k_buch">Buch</label></li>
                 <li><input type="checkbox" class="kategorie" id="k_taschenrechner" name="kategorie_checkbox"> <label for="k_taschenrechner">Taschenrechner</label></li>
@@ -36,8 +36,8 @@
                 <li><input type="checkbox" class="kategorie" id="k_etas" name="kategorie_checkbox"> <label for="k_etas">ETAs</label></li>
                 <li><input type="checkbox" class="kategorie" id="k_gtas" name="kategorie_checkbox"> <label for="k_gtas">GTAs</label></li>
             </ul>
-            <textarea class="discription" name="beschreibung_ware" rows="20" cols="100" placeholder="Beschreibung"></textarea><br><br>
-            <label for="zustand">Zustand des Produktes:</label>
+            <textarea class="discription" name="beschreibung_ware" rows="20" cols="100" placeholder="Beschreibung"></textarea><br><br> <!--Beschreibung der Ware-->
+            <label for="zustand">Zustand des Produktes:</label> <!--Zustand der Ware-->
             <ul>
                 <li><input type="radio" class="zustand" id="z_orginalverpackt" name="zustand_ware"> <label for="z_orginalverpackt">Orginalverpackt</label></li>
                 <li><input type="radio" class="zustand" id="z_nie_verwendet" name="zustand_ware"> <label for="z_nie_verwendet">Nie Verwendet</label></li>
@@ -45,7 +45,7 @@
                 <li><input type="radio" class="zustand" id="z_mittlere_gebrauchsspuren" name="zustand_ware"> <label for="z_mittlere_gebrauchsspuren">Mittlere Gebrauchsspuren</label></li>
                 <li><input type="radio" class="zustand" id="z_starke_gebrauchsspuren" name="zustand_ware"> <label for="z_starke_gebrauchsspuren">Starke Gebrauchsspuren</label></li>
             </ul>
-            <input type="text" class="price" name="preis_angebot" placeholder="Preis"><br><br>
+            <input type="text" class="price" name="preis_angebot" placeholder="Preis"><br><br> <!--Preis der Ware-->
             <input type="submit" value="Angebot erstellen">
         </form>
 
