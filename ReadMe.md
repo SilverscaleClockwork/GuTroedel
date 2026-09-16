@@ -1,20 +1,24 @@
-# GuTrödel
-    Einfacher Troedeln geht ja nicht mehr.
-Ziel des Projektes ist es die verschwendung von Schulmitteln zu verhindern.
-Dies ist eine Webapp die den Austausch von Schulmaterial vereinfachen soll.
+# GuTrödel – gescheiterter Prototyp & Post-Mortem
 
-## Inhalt
-- [Server Requirements](#server-requirements)
-- [Installationsanleitung](#installation)
+> **Projekt-Status:** Fehlgeschlagen / Unvollständiger Code-Rest  
+> **Kontext:** BK GuT (Berufskolleg für Gestaltung und Technik)  
+> **Zeitfenster:** ~45 Stunden (10 Tage × 4,5 h)  
+> **Tech-Stack:** Native PHP (ohne Frameworks, ohne externe Libraries, ohne AI)
 
-## Server Requirements
-Dies sind einfache Schätzungen um zu verhindern das unzureichende Hardware genutzt wird.
+## 📌 Ursachenanalyse des Scheiterns (Post-Mortem)
 
-- Ram: 1GB
-- Freier Speicherplatz: 2GB
+Ziel des Projekts war eine vollständige E-Commerce-Plattform (inkl. Marktplatz, Chat und Forum). Das Projekt ist gescheitert. 
 
-## Installation
-Einen installations Guide mit Empfehlungen finden sie [hier](/documentation/bktroedel-install-guide.md)
+Die primären Gründe für den Abbruch und den unvollständigen Zustand:
 
-## Git Guide
-Einen Git guide finden sie [hier](/documentation/how-to-use-git-in-school.md)
+* **Fokus auf Integration statt Durchsatz:** Etwa die Hälfte der gesamten Entwicklungszeit wurde darauf verwendet, Teammitglieder ohne Web- und Git-Vorkenntnisse einzubinden, Abläufe zu erklären und Git-Workflows für das Schulnetzwerk zu dokumentieren (`/documentation/how-to-use-git-in-school.md`).
+* **Wissenskluft & Blockade:** Trotz des Aufwands konnte die Wissenslücke bezüglich Templating, PHP und Versionierung in der verbleibenden Zeit nicht überbrückt werden.
+* **Zeitnot im Alleingang:** Die verbleibende Zeit reichte nicht aus, um den komplexen Scope (Routing, Auth, Templating, Datenbank) als einzelne Person in Native PHP fertigzustellen.
+
+## 🛠️ Was im Repository verbleibt
+* **`/`** – Unvollständige Code-Fragmente (Ansätze von Templating & nicht funktionierendes Auth-System)
+* **`/documentation/bktroedel-install-guide.md`** – Dokumentierter Setup-Versuch
+* **`/documentation/how-to-use-git-in-school.md`** – Erstellter Leitfaden zur Git-Nutzung unter Schulnetzwerk-Bedingungen
+
+## 💡 Erkenntnis
+Dieses Repository dokumentiert das Scheitern eines Projekts an der Schnittstelle zwischen unrealistischem Scope, fehlenden Team-Grundlagen und dem Versuch, Integration vor reine Code-Produktion zu stellen. Es zeigt eindrücklich, dass Zeit, die in fehlende Fundamente investiert wird, bei der Umsetzung fehlt, wenn der zeitliche Rahmen keinen Spielraum lässt.
